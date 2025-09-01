@@ -14,3 +14,7 @@ https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-sprint-13?node-i
 - Iedereen uitnodigen voor PR review. Minstens één review nodig om te mergen.
 
 ## Conventies
+### Commits
+Schrijf commit messages volgens https://www.conventionalcommits.org/nl/v1.0.0/ en https://docs.fdnd.nl/conventies.html
+### Pull Requests
+Gebruik het pull request template van https://github.com/fdnd-agency/.github/blob/main/pull_request_template.md
