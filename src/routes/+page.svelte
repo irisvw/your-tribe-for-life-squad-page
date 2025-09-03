@@ -12,5 +12,5 @@
         <a href="/{member.id}">{member.name} - {member.id}
         <img src="{member.avatar}" alt="De avatar van {member.name}"></a>
     </li>
-{/each}
+    {/each}
 </ul>
