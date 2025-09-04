@@ -21,50 +21,119 @@
 
 <details>
     <summary>Januari</summary>
+    {#each membersByMonth.jan as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Februari</summary>
+    {#each membersByMonth.feb as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Maart</summary>
+    {#each membersByMonth.mar as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>April</summary>
+    {#each membersByMonth.apr as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Mei</summary>
+    {#each membersByMonth.may as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Juni</summary>
+    {#each membersByMonth.jun as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Juli</summary>
+    {#each membersByMonth.jul as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Augustus</summary>
+    {#each membersByMonth.aug as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>September</summary>
+    {#each membersByMonth.sep as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>Oktober</summary>
+    {#each membersByMonth.oct as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>November</summary>
+    {#each membersByMonth.nov as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <details>
     <summary>December</summary>
+    {#each membersByMonth.dec as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
+</details>
+
+<details>
+    <summary>Onbekend</summary>
+    {#each membersByMonth.onbekend as member}
+    <li>
+        <a href="/{member.id}">{member.name} - {member.birthday}</a>
+    </li>
+    {/each}
 </details>
 
 <style>
