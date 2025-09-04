@@ -5,11 +5,12 @@
     members.forEach(member => {
         const dateString = member.birthdate;
         const date = new Date(dateString); // converteert datum string naar Date object
-        member.birthmonth = date.toLocaleString('default', { month: 'short' }); // converteert datum naar maandnaam en slaat het op in member
+        member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
         member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
     });
 
     const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
+    console.log(membersByMonth);
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -23,7 +24,7 @@
     {/each}
 
     <h2>Augustus</h2>
-    {#each membersByMonth.Aug as member}
+    {#each membersByMonth.aug as member}
     <li>
         <a href="/{member.id}">{member.name} - {member.birthday}</a>
     </li>
