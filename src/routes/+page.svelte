@@ -13,6 +13,7 @@
         "September",
         "Oktober",
         "November",
+        "December",
         "Onbekend",
     ];
 
@@ -23,8 +24,8 @@
             member.month_number = date.getMonth();
             member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
         } else {
-            member.month_name = "onbekend";
-            member.month_number = "12";
+            // member.month_name = "onbekend";
+            member.month_number = 12;
             member.day_number = "?";
         }
     });
@@ -35,8 +36,10 @@
     const membersByMonth = months.map((month, index) =>
         members
             .filter((member) => member.month_number === index)
-            .sort((a, b) => a.day_number - b.day_number),
+            .sort((a, b) => a.day_number - b.day_number)
     );
+
+    console.log(membersByMonth);
 </script>
 
 <h1>Kalender</h1>
@@ -47,9 +50,7 @@
         <ul>
             {#each membersByMonth[i] as member}
                 <li>
-                    <a href="/{member.id}"
-                        >{member.name} - {member.day_number}</a
-                    >
+                    <a href="/{member.id}">{member.name} - {member.day_number}</a>
                 </li>
             {:else}
                 <li>No birthdays this month :(</li>
