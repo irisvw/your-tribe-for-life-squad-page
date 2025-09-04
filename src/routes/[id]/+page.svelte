@@ -14,7 +14,6 @@
         ? `https://fdnd.directus.app/assets/${member.mugshot}`
         : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
       alt={member.name}
-      loading="lazy"
     />
   </div>
 
@@ -22,11 +21,8 @@
     <h1>{member.name}</h1>
 
     <section class="info">
-      <div class="bio">
-        <span>{member.bio}</span>
-      </div>
-      <ul>
-        <li>
+      <div class="birthdate">
+        <span>
           {member.birthdate
             ? new Date(member.birthdate).toLocaleDateString("nl-NL", {
                 day: "2-digit",
@@ -34,6 +30,11 @@
                 year: "numeric",
               })
             : "Geen verjaardag bekend"}
+        </span>
+      </div>
+      <ul>
+        <li>
+          {member.bio}
         </li>
         <li style="color: {member.fav_color}">This is my favorite color</li>
         <li>{member.fav_tag}</li>
@@ -89,26 +90,27 @@
     border: 1px solid black;
   }
 
-  .bio {
+  .birthdate {
     background-color: black;
     color: white;
     line-height: 1.3rem;
     text-align: center;
     padding: 1rem;
-    max-width: 30rem;
+    max-width: 40rem;
   }
 
   ul {
     list-style: none;
     margin: 1rem 0;
     text-align: center;
-    padding: 0;
+    padding: 1rem;
   }
 
   li {
     font-family: Arial, Helvetica, sans-serif;
     padding: 0.2rem 0;
     line-height: 1.2rem;
+    max-width: 30rem;
   }
 
   .info {
@@ -134,36 +136,36 @@
 
   /* Desktop */
   @media (min-width: 1024px) {
-  .profile-container {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
+    .profile-container {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
 
-  .img-container {
-    max-width: 30rem;
-    width: auto;
-    display: flex;
-    justify-content: flex-start;
-  }
+    .img-container {
+      max-width: 30rem;
+      width: auto;
+      display: flex;
+      justify-content: flex-start;
+    }
 
-  .img-container img {
-    width: 100%;
-    height: auto;
-    border: 1px solid black;
-  }
+    .img-container img {
+      width: 100%;
+      height: auto;
+      border: 1px solid black;
+    }
 
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 40rem;
-  }
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 40rem;
+    }
 
-  .bio,
-  .info {
-    text-align: left;
+    .bio,
+    .info {
+      text-align: left;
+    }
   }
-}
 </style>
