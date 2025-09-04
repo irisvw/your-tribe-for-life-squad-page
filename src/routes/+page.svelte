@@ -10,11 +10,12 @@
             member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
         } else {
             member.birthmonth = "onbekend";
-            member.birthday = "onbekend";
+            member.birthday = "?";
         }
     });
 
-    const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
+    const membersSorted = members.sort((a, b) => a.birthday - b.birthday); // sorteert op geboorte datum
+    const membersByMonth = Object.groupBy(membersSorted, ({ birthmonth }) => birthmonth); // groepeert per maand
 </script>
 
 <h1>Kalender</h1>
