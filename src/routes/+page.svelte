@@ -3,75 +3,77 @@
     const members = data.members;
 </script>
 
-<h1 class="title">Kalender</h1>
+<h1>Kalender</h1>
 
-<details class="month-birthday">
+<details>
     <summary>Januari</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Februari</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Maart</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>April</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Mei</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Juni</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Juli</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Augustus</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>September</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>Oktober</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>November</summary>
 </details>
 
-<details class="month-birthday">
+<details>
     <summary>December</summary>
 </details>
 
 <style>
-    .title {
+    h1 {
         display: flex;
         justify-content: center;
-        font-size: 42px;
+        font-size: 2.6rem;
     }
 
-    .month-birthday {
+    details {
         background-color: white;
         margin: 1em;
         padding: 1em;
-        border-radius: 15px;
-        border: 2px solid;
+        border-radius: 1em;
+        border: 0.125em solid;
     }
 
     summary {
-        font-size: 32px;
+        font-size: 2rem;
         list-style: none;
         position: relative;
+        display: flex;
+        justify-content: center;
     }
 
     summary::after {
