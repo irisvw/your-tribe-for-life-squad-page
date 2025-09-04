@@ -3,10 +3,15 @@
     const members = data.members;
 
     members.forEach(member => {
-        const dateString = member.birthdate;
-        const date = new Date(dateString); // converteert datum string naar Date object
-        member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
-        member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+        if (member.birthdate) {
+            const dateString = member.birthdate;
+            const date = new Date(dateString); // converteert datum string naar Date object
+            member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
+            member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+        } else {
+            member.birthmonth = "onbekend";
+            member.birthday = "onbekend";
+        }
     });
 
     const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
