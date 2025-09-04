@@ -10,7 +10,6 @@
     });
 
     const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
-    console.log(membersByMonth);
 </script>
 
 <h1>Kalender</h1>
