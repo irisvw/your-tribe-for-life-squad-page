@@ -29,6 +29,9 @@
         }
     });
 
+    // Maak een nieuw array gebaseerd op de months array. 
+    // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index. 
+    // Sorteer daarna alleen die members. 
     const membersByMonth = months.map((month, index) =>
         members
             .filter((member) => member.month_number === index)
