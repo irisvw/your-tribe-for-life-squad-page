@@ -1,67 +1,63 @@
 <script>
     let { data } = $props();
     const members = data.members;
+    const months = [
+        "Januari",
+        "Februari",
+        "Maart",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Augustus",
+        "September",
+        "Oktober",
+        "November",
+        "December",
+        "Onbekend",
+    ];
 
-    members.forEach(member => {
-        const dateString = member.birthdate;
-        const date = new Date(dateString); // converteert datum string naar Date object
-        member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
-        member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+    members.forEach((member) => {
+        if (member.birthdate) {
+            const dateString = member.birthdate;
+            const date = new Date(dateString); // converteert datum string naar Date object
+            member.month_number = date.getMonth();
+            member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+        } else {
+            // member.month_name = "onbekend";
+            member.month_number = 12;
+            member.day_number = "?";
+        }
     });
 
-    const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
+    // Maak een nieuw array gebaseerd op de months array. 
+    // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index. 
+    // Sorteer daarna alleen die members. 
+    const membersByMonth = months.map((month, index) =>
+        members
+            .filter((member) => member.month_number === index)
+            .sort((a, b) => a.day_number - b.day_number)
+    );
+
     console.log(membersByMonth);
 </script>
 
 <h1>Kalender</h1>
 
-<details>
-    <summary>Januari</summary>
-</details>
-
-<details>
-    <summary>Februari</summary>
-</details>
-
-<details>
-    <summary>Maart</summary>
-</details>
-
-<details>
-    <summary>April</summary>
-</details>
-
-<details>
-    <summary>Mei</summary>
-</details>
-
-<details>
-    <summary>Juni</summary>
-</details>
-
-<details>
-    <summary>Juli</summary>
-</details>
-
-<details>
-    <summary>Augustus</summary>
-</details>
-
-<details>
-    <summary>September</summary>
-</details>
-
-<details>
-    <summary>Oktober</summary>
-</details>
-
-<details>
-    <summary>November</summary>
-</details>
-
-<details>
-    <summary>December</summary>
-</details>
+{#each months as month, i}
+    <details>
+        <summary>{month}</summary>
+        <ul>
+            {#each membersByMonth[i] as member}
+                <li>
+                    <a href="/{member.id}">{member.name} - {member.day_number}</a>
+                </li>
+            {:else}
+                <li>No birthdays this month :(</li>
+            {/each}
+        </ul>
+    </details>
+{/each}
 
 <style>
     h1 {
