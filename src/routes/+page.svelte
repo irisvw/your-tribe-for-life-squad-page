@@ -1,6 +1,16 @@
 <script>
     let { data } = $props();
     const members = data.members;
+
+    members.forEach(member => {
+        const dateString = member.birthdate;
+        const date = new Date(dateString); // converteert datum string naar Date object
+        member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
+        member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+    });
+
+    const membersByMonth = Object.groupBy(members, ({ birthmonth }) => birthmonth);
+    console.log(membersByMonth);
 </script>
 
 <h1>Kalender</h1>
