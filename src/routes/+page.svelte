@@ -2,20 +2,24 @@
     let { data } = $props();
     const members = data.members;
 
-    members.forEach(member => {
+    members.forEach((member) => {
         if (member.birthdate) {
             const dateString = member.birthdate;
             const date = new Date(dateString); // converteert datum string naar Date object
-            member.birthmonth = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // converteert datum naar maandnaam en slaat het op in member
-            member.birthday = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+            member.month_number = date.getMonth();
+            member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
         } else {
-            member.birthmonth = "onbekend";
-            member.birthday = "?";
+            member.month_name = "onbekend";
+            member.month_number = "12";
+            member.day_number = "?";
         }
     });
 
-    const membersSorted = members.sort((a, b) => a.birthday - b.birthday); // sorteert op geboorte datum
-    const membersByMonth = Object.groupBy(membersSorted, ({ birthmonth }) => birthmonth); // groepeert per maand
+    const membersByMonth = months.map((month, index) =>
+        members
+            .filter((member) => member.month_number === index)
+            .sort((a, b) => a.day_number - b.day_number),
+    );
 </script>
 
 <h1>Kalender</h1>
