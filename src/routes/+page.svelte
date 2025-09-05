@@ -42,6 +42,11 @@
     console.log(membersByMonth);
 </script>
 
+<svelte:head>
+    <title>Overzichtspagina</title>
+    <meta name="description" content="Overzichtspagina Squadpage" />
+</svelte:head>
+
 <h1>Kalender</h1>
 
 

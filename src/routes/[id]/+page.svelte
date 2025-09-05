@@ -4,7 +4,11 @@
   const member = data.member;
 </script>
 
-<!-- Vanaf hier komt de content -->
+<svelte:head>
+    <title>{member.name}</title>
+    <meta name="description" content="Profielpagina van {member.name}" />
+</svelte:head>
+
 <a href="/">Terug naar overzicht</a>
 
 <div class="profile-container">
