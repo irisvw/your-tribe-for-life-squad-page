@@ -138,6 +138,9 @@
         justify-content: center;
         width: 1em;
         font-family: "Belanosima", sans-serif;
+        &:hover{
+            color: #406a58;
+        }
     }
 
     .member-name {
@@ -146,18 +149,22 @@
         background-color: #aacad4;
         border-radius: 0.5em;
         color: black;
-        display: inline-block;
-        width: 7em;
+        width: 100%;
         text-align: center;
         font-family: "Belanosima", sans-serif;
+        &:hover{
+            background-color: #6dbf9d;
+        }
     }
 
     .no-birthday {
         font-size: 1.1em;
-        padding: 0.5em;
+        font-family: "Belanosima", sans-serif;
+        padding: 1em;
         background-color: #aacad4;
         border-radius: 0.5em;
         color: black;
         display: inline-block;
     }
+
 </style>
