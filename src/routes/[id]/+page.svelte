@@ -34,7 +34,11 @@
       </div>
       <ul>
         <li>
-          {member.bio}
+          {#if member.bio}
+            <span>{member.bio}</span>
+          {:else}
+            <span>Geen bio beschikbaar</span>
+          {/if}
         </li>
         <li style="color: {member.fav_color}">This is my favorite color</li>
         <li>{member.fav_tag}</li>
@@ -141,6 +145,11 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
+      min-height: 80vh;
+    }
+
+    body {
+      margin: 0;
     }
 
     .img-container {
