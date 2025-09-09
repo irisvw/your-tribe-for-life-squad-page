@@ -24,7 +24,8 @@
         border: 2px solid black;
         background-color: white;
         margin: auto;
-        max-width: max-content;
+        width: max-content;
+        max-width: 90vw;
         margin-top: 30vh;
 
         display: flex;
