@@ -46,18 +46,17 @@
     <title>Overzichtspagina</title>
     <meta name="description" content="Overzichtspagina Squadpage" />
 
-      <style>
-    body {
-      background-color: #C1D1E4;
-      margin: 1rem 2rem;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-  </style>
+    <style>
+        body {
+            background-color: #c1d1e4;
+            margin: 1rem 2rem;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </svelte:head>
 
 <h1>Kalender</h1>
-
 
 {#each months as month, i}
     <details>
@@ -78,8 +77,11 @@
     </details>
 {/each}
 
-
 <style>
+    :root {
+        interpolate-size: allow-keywords;
+    }
+
     h1 {
         display: flex;
         justify-content: center;
@@ -93,11 +95,24 @@
         padding: 1em;
         border-radius: 1em;
         border: 0.125em solid;
+        overflow: hidden;
+
+        &::details-content {
+            block-size: 0;
+            transition-property: block-size, content-visibility;
+            transition-duration: 1s;
+            transition-behavior: allow-discrete;
+        }
+
+        &[open]::details-content {
+            block-size: auto;
+            block-size: calc-size(auto);
+        }
 
         @media screen and (min-width: 768px) {
-        max-width: 35em; 
-        margin: 1em auto 1em auto;
-    }
+            max-width: 35em;
+            margin: 1em auto 1em auto;
+        }
     }
 
     summary {
@@ -113,13 +128,13 @@
         content: "▼";
         position: absolute;
         right: 0;
-        transition: .3s;
+        transition: 0.3s;
     }
 
     details[open] > summary::after {
         content: "▼";
         rotate: 180deg;
-        transition: .3s;
+        transition: 0.3s;
     }
 
     summary::-webkit-details-marker {
@@ -152,7 +167,7 @@
         justify-content: center;
         width: 1em;
         font-family: "Belanosima", sans-serif;
-        &:hover{
+        &:hover {
             color: #406a58;
         }
     }
@@ -166,7 +181,7 @@
         width: 100%;
         text-align: center;
         font-family: "Belanosima", sans-serif;
-        &:hover{
+        &:hover {
             background-color: #6dbf9d;
         }
     }
@@ -180,5 +195,4 @@
         color: black;
         display: inline-block;
     }
-
 </style>
