@@ -47,11 +47,10 @@
     <meta name="description" content="Overzichtspagina Squadpage" />
 </svelte:head>
 
-<h1>Kalender</h1>
-
+<h1 class="animation-fade-in" style="--delay: 0s">Kalender</h1>
 
 {#each months as month, i}
-    <details>
+    <details class="animation-fade-in--down" style="--delay: { i * 0.05 }s">
         <summary>{month}</summary>
         <ul>
             {#each membersByMonth[i] as member}
