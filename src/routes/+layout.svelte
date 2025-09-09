@@ -22,10 +22,11 @@
 		--bg-layer-1: #DAC1E4;
 		--bg-layer-2: #C1D1E4;
 		--bg-layer-3: #FAE3B8; 
+		--error-color:#ff7171;
 		--primary-text:#000000 ;
 		--secondary-text:#FFFFFF ; 
 
-		--border: 2px solid var(var(--primary-color))
+		--border: 2px solid var(--primary-color);
 
 	}
 </style>
