@@ -5,8 +5,17 @@
 </script>
 
 <svelte:head>
-    <title>{member.name}</title>
-    <meta name="description" content="Profielpagina van {member.name}" />
+  <title>{member.name}</title>
+  <meta name="description" content="Profielpagina van {member.name}" />
+
+  <style>
+    body {
+      background-color: #dac1e4;
+      margin: 1rem 2rem;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
 </svelte:head>
 
 <a href="/">Terug naar overzicht</a>
@@ -62,13 +71,6 @@
 
 <!-- Hier komt de CSS -->
 <style>
-  :global body {
-    background-color: #dac1e4;
-    margin: 1rem 2rem;
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
   h1 {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;

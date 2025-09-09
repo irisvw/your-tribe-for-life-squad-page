@@ -45,6 +45,15 @@
 <svelte:head>
     <title>Overzichtspagina</title>
     <meta name="description" content="Overzichtspagina Squadpage" />
+
+      <style>
+    body {
+      background-color: #C1D1E4;
+      margin: 1rem 2rem;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
 </svelte:head>
 
 <h1>Kalender</h1>
