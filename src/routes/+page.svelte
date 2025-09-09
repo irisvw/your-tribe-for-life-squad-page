@@ -91,6 +91,12 @@
         border-radius: 1em;
         border: 0.125em solid;
 
+        &[open] > summary::after {
+        content: "▼";
+        rotate: 180deg;
+        transition: 0.3s;
+    }
+
         @media screen and (min-width: 768px) {
             max-width: 35em;
             margin: 1em auto 1em auto;
@@ -104,20 +110,27 @@
         position: relative;
         display: flex;
         justify-content: center;
+
+        &::after{
+        content:"▼";
+        position: absolute;
+        right: 0;
+        transition: 0.3s;
+        }
     }
 
-    summary::after {
+    /* summary::after {
         content: "▼";
         position: absolute;
         right: 0;
         transition: 0.3s;
-    }
+    } */
 
-    details[open] > summary::after {
+    /* details[open] > summary::after {
         content: "▼";
         rotate: 180deg;
         transition: 0.3s;
-    }
+    } */
 
     summary::-webkit-details-marker {
         display: none;
@@ -149,6 +162,7 @@
         justify-content: center;
         width: 1em;
         font-family: var(--secondary-font-family);
+
         &:hover {
             color: #406a58;
         }
@@ -163,6 +177,7 @@
         width: 100%;
         text-align: center;
         font-family: var(--secondary-font-family);
+
         &:hover {
             background-color: #6dbf9d;
         }
