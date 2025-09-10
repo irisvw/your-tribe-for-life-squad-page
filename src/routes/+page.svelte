@@ -55,10 +55,10 @@
     </style>
 </svelte:head>
 
-<h1>Kalender</h1>
+<h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
-    <details>
+    <details class="animation-fade-in--down" style="--delay: {i * 0.05}s">
         <summary>{month}</summary>
         <ul>
             {#each membersByMonth[i] as member}
@@ -118,19 +118,6 @@
         transition: 0.3s;
         }
     }
-
-    /* summary::after {
-        content: "▼";
-        position: absolute;
-        right: 0;
-        transition: 0.3s;
-    } */
-
-    /* details[open] > summary::after {
-        content: "▼";
-        rotate: 180deg;
-        transition: 0.3s;
-    } */
 
     summary::-webkit-details-marker {
         display: none;
