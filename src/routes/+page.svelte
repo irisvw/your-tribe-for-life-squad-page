@@ -182,6 +182,24 @@
     }
 
     .birthday-mode {
-        background: linear-gradient(red, yellow, green, blue, purple);
+        background: linear-gradient(90deg in oklch, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3));
+        background-size: 400% 400%;
+        animation: gradient 3.5s ease infinite;
+
+        &:hover {
+            cursor: url('$lib/assets/party.svg'), crosshair;
+        }
     }
+
+    @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 </style>
