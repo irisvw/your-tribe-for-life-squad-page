@@ -16,6 +16,9 @@
         "December",
         "Onbekend",
     ];
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentDay = today.getDate();
 
     members.forEach((member) => {
         if (member.birthdate) {
@@ -24,11 +27,12 @@
             member.month_number = date.getMonth();
             member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
         } else {
-            // member.month_name = "onbekend";
             member.month_number = 12;
             member.day_number = "?";
         }
     });
+
+    members.push({ "name": "Birthday Every Day", "month_number": currentMonth, "day_number": currentDay});
 
     // Maak een nieuw array gebaseerd op de months array.
     // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
@@ -38,8 +42,6 @@
             .filter((member) => member.month_number === index)
             .sort((a, b) => a.day_number - b.day_number),
     );
-
-    console.log(membersByMonth);
 </script>
 
 <svelte:head>
@@ -65,9 +67,8 @@
             {#each membersByMonth[i] as member}
                 <li class="members-birthday">
                     <a href="/{member.id}">
-                        <!-- {member.day_number} {member.name} -->
                         <span class="day-number">{member.day_number}</span>
-                        <span class="member-name">{member.name}</span>
+                        <span class="member-name { member.day_number == currentDay && member.month_number == currentMonth ? "birthday-mode" : "" }">{member.name}</span>
                     </a>
                 </li>
             {:else}
@@ -177,5 +178,9 @@
         border-radius: 0.5em;
         color: black;
         display: inline-block;
+    }
+
+    .birthday-mode {
+        background: linear-gradient(red, yellow, green, blue, purple);
     }
 </style>
