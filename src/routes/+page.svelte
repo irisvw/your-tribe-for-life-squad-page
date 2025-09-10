@@ -78,6 +78,10 @@
 {/each}
 
 <style>
+    :root {
+        interpolate-size: allow-keywords;
+    }
+
     h1 {
         display: flex;
         justify-content: center;
@@ -91,6 +95,20 @@
         padding: 1em;
         border-radius: 1em;
         border: 0.125em solid;
+        overflow: hidden;
+
+        &::details-content {
+            block-size: 0;
+            transition-property: block-size, content-visibility;
+            transition-duration: 0.5s;
+            transition-behavior: allow-discrete;
+            padding: 1px;
+        }
+
+        &[open]::details-content {
+            block-size: auto;
+            block-size: calc-size(auto);
+        }
 
         &[open] > summary::after {
         content: "▼";
