@@ -153,6 +153,7 @@
 
   ol {
     list-style: none;
+    padding: 0;
   }
 
   .members-birthday {
