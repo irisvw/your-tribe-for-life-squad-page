@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animation-fade-in--down {
+    transform: translateY(-100px);
+    opacity: 0;
+    animation: fade-in-translate 0.5s var(--delay, 0.1s) ease-out forwards;
+  }
+}
+
+@keyframes fade-in-translate {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animation-fade-in {
+    opacity: 0;
+    animation: fade-in 1s var(--delay, 0s) ease-out forwards;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
