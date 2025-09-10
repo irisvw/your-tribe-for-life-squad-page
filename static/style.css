@@ -16,7 +16,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .animation-fade-in {
     opacity: 0;
-    animation: fade-in 0.5s var(--delay, 0s) ease-out forwards;
+    animation: fade-in 1s var(--delay, 0s) ease-out forwards;
   }
 }
 
