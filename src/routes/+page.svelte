@@ -61,6 +61,14 @@
   </style>
 </svelte:head>
 
+<p class="intro-text">
+  Welkom op onze squadpage! <br />
+  <br />
+  Hier vind je wie er allemaal in onze squad zitten, wanneer we jarig zijn (heel
+  belangrijk 🍰) en kan je ons beter leren kennen. Klik op een maand voor een overzicht
+  van jarige studenten.
+</p>
+
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
@@ -89,6 +97,17 @@
 <style>
   :root {
     interpolate-size: allow-keywords;
+  }
+
+  .intro-text {
+    text-align: center;
+    font-family: var(--secondary-font-family);
+    font-weight: 100;
+    line-height: 1.3;
+    font-size: 1.4rem;
+    max-width: 35em;
+    margin: 0 auto;
+    padding: 1rem;
   }
 
   h1 {
