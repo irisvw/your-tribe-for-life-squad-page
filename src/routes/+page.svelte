@@ -100,8 +100,9 @@
         &::details-content {
             block-size: 0;
             transition-property: block-size, content-visibility;
-            transition-duration: 1s;
+            transition-duration: 0.5s;
             transition-behavior: allow-discrete;
+            padding: 1px;
         }
 
         &[open]::details-content {
