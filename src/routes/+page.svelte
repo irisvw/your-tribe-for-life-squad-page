@@ -133,7 +133,7 @@
 
   summary {
     font-family: var(--primary-font-family);
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
     list-style: none;
     position: relative;
     display: flex;
