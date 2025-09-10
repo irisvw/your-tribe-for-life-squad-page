@@ -16,6 +16,9 @@
         "December",
         "Onbekend",
     ];
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentDay = today.getDate();
 
     members.forEach((member) => {
         if (member.birthdate) {
@@ -24,11 +27,12 @@
             member.month_number = date.getMonth();
             member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
         } else {
-            // member.month_name = "onbekend";
             member.month_number = 12;
             member.day_number = "?";
         }
     });
+
+    members.push({ "name": "Birthday Every Day", "month_number": currentMonth, "day_number": currentDay});
 
     // Maak een nieuw array gebaseerd op de months array.
     // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
@@ -38,8 +42,6 @@
             .filter((member) => member.month_number === index)
             .sort((a, b) => a.day_number - b.day_number),
     );
-
-    console.log(membersByMonth);
 </script>
 
 <svelte:head>
@@ -48,10 +50,9 @@
 
     <style>
         body {
-            background-color: #c1d1e4;
+            background-color: var(--bg-general);
             margin: 1rem 2rem;
             min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 </svelte:head>
@@ -65,9 +66,8 @@
             {#each membersByMonth[i] as member}
                 <li class="members-birthday">
                     <a href="/{member.id}">
-                        <!-- {member.day_number} {member.name} -->
                         <span class="day-number">{member.day_number}</span>
-                        <span class="member-name">{member.name}</span>
+                        <span class="member-name { member.day_number == currentDay && member.month_number == currentMonth ? "birthday-mode" : "" }">{member.name}</span>
                     </a>
                 </li>
             {:else}
@@ -86,11 +86,11 @@
         display: flex;
         justify-content: center;
         font-size: 3rem;
-        font-family: "Caprasimo", serif;
+        font-family: var(--primary-font-family);
     }
 
     details {
-        background-color: white;
+        background-color: var(--secondary-color);
         margin: 1em;
         padding: 1em;
         border-radius: 1em;
@@ -110,6 +110,12 @@
             block-size: calc-size(auto);
         }
 
+        &[open] > summary::after {
+        content: "▼";
+        rotate: 180deg;
+        transition: 0.3s;
+    }
+
         @media screen and (min-width: 768px) {
             max-width: 35em;
             margin: 1em auto 1em auto;
@@ -117,25 +123,19 @@
     }
 
     summary {
-        font-family: "Caprasimo", serif;
+        font-family: var(--primary-font-family);
         font-size: 2rem;
         list-style: none;
         position: relative;
         display: flex;
         justify-content: center;
-    }
 
-    summary::after {
-        content: "▼";
+        &::after{
+        content:"▼";
         position: absolute;
         right: 0;
         transition: 0.3s;
-    }
-
-    details[open] > summary::after {
-        content: "▼";
-        rotate: 180deg;
-        transition: 0.3s;
+        }
     }
 
     summary::-webkit-details-marker {
@@ -167,7 +167,8 @@
         display: flex;
         justify-content: center;
         width: 1em;
-        font-family: "Belanosima", sans-serif;
+        font-family: var(--secondary-font-family);
+
         &:hover {
             color: #406a58;
         }
@@ -181,7 +182,8 @@
         color: black;
         width: 100%;
         text-align: center;
-        font-family: "Belanosima", sans-serif;
+        font-family: var(--secondary-font-family);
+
         &:hover {
             background-color: #6dbf9d;
         }
@@ -189,11 +191,15 @@
 
     .no-birthday {
         font-size: 1.1em;
-        font-family: "Belanosima", sans-serif;
+        font-family: var(--secondary-font-family);
         padding: 1em;
         background-color: #aacad4;
         border-radius: 0.5em;
-        color: black;
+        color: var(--primary-text);
         display: inline-block;
+    }
+
+    .birthday-mode {
+        background: linear-gradient(red, yellow, green, blue, purple);
     }
 </style>
