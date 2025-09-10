@@ -56,11 +56,10 @@
   </style>
 </svelte:head>
 
-<h1>Kalender</h1>
-
+<h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
-    <details>
+    <details class="animation-fade-in--down" style="--delay: {i * 0.05}s">
         <summary>{month}</summary>
         <ul>
             {#each membersByMonth[i] as member}
@@ -78,7 +77,6 @@
     </details>
 {/each}
 
-
 <style>
     h1 {
         display: flex;
@@ -95,9 +93,9 @@
         border: 0.125em solid;
 
         @media screen and (min-width: 768px) {
-        max-width: 35em; 
-        margin: 1em auto 1em auto;
-    }
+            max-width: 35em;
+            margin: 1em auto 1em auto;
+        }
     }
 
     summary {
@@ -113,13 +111,13 @@
         content: "▼";
         position: absolute;
         right: 0;
-        transition: .3s;
+        transition: 0.3s;
     }
 
     details[open] > summary::after {
         content: "▼";
         rotate: 180deg;
-        transition: .3s;
+        transition: 0.3s;
     }
 
     summary::-webkit-details-marker {
@@ -152,7 +150,7 @@
         justify-content: center;
         width: 1em;
         font-family: "Belanosima", sans-serif;
-        &:hover{
+        &:hover {
             color: #406a58;
         }
     }
@@ -166,7 +164,7 @@
         width: 100%;
         text-align: center;
         font-family: "Belanosima", sans-serif;
-        &:hover{
+        &:hover {
             background-color: #6dbf9d;
         }
     }
@@ -180,5 +178,4 @@
         color: black;
         display: inline-block;
     }
-
 </style>
