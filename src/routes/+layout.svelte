@@ -25,8 +25,8 @@
 
 <style>
   :global(::view-transition-old(root), ::view-transition-new(root)) {
-    animation-duration: 0.4s;
-    animation-timing-function: ease;
+    animation-duration: 0.45s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-fill-mode: both;
   }
 
@@ -39,22 +39,30 @@
   }
 
   @keyframes zoomIn {
-    from {
-      transform: scale(0.9);
+    0% {
+      transform: scale(0.95);
       opacity: 0;
     }
-    to {
+    60% {
+      transform: scale(1.02);
+      opacity: 1;
+    }
+    100% {
       transform: scale(1);
       opacity: 1;
     }
   }
 
   @keyframes zoomOutFade {
-    from {
+    0% {
       transform: scale(1);
       opacity: 1;
     }
-    to {
+    40% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
       transform: scale(1.1);
       opacity: 0;
     }
