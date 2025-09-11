@@ -32,7 +32,7 @@
         }
     });
 
-    members.push({ "name": "Birthday Every Day", "month_number": currentMonth, "day_number": currentDay});
+    members.push({"name": "Birthday Every Day", "month_number": currentMonth, "day_number": currentDay});
 
     // Maak een nieuw array gebaseerd op de months array.
     // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
@@ -187,7 +187,7 @@
         animation: gradient 3.5s ease infinite;
 
         &:hover {
-            cursor: url('$lib/assets/party.svg'), crosshair;
+            cursor: url('$lib/assets/party.svg'), pointer;
         }
     }
 
