@@ -54,7 +54,7 @@
 
   <style>
     body {
-      background-color: var(--bg-general);
+      background-color: var(--bg-color-3);
       margin: 1rem;
       min-height: 100vh;
     }
@@ -75,21 +75,16 @@
         <li class="members-birthday">
           <a href="/{member.id}">
             <span class="day-number">{member.day_number}</span>
-            <span
-              class="member-name {member.day_number == currentDay &&
-              member.month_number == currentMonth
-                ? 'birthday-mode'
-                : ''}"
-            >
-              {member.name}
-            </span>
-            <img
-              class="member-mugshot"
-              src={member.mugshot
-                ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
-                : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
-              alt={member.name}
-            />
+            <span class="member-name">{member.name}</span>
+            <div class="member-mugshot-container">
+              <img
+                class="member-mugshot"
+                src={member.mugshot
+                  ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
+                  : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
+                alt={member.name}
+              />
+            </div>
           </a>
         </li>
       {:else}
@@ -137,9 +132,9 @@
       margin-right: 1em;
     }
 
-    @media screen and (min-width: 768px) {
+    @media (min-width: 768px) {
       max-width: 35em;
-      margin: 1em auto 1em auto;
+      margin: 1.5em auto;
     }
   }
 
@@ -156,14 +151,14 @@
     transition:
       background 0.3s,
       color 0.3s;
-  }
 
-  summary::after {
-    content: "▼";
-    position: absolute;
-    right: 0;
-    transition: 0.3s;
-    margin-right: 1em;
+    &::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: 0.3s;
+      margin-right: 1em;
+    }
   }
 
   details[open] > summary {
@@ -178,10 +173,11 @@
   ol {
     list-style: none;
     padding-inline-start: 0;
+    margin: 1rem 0.5em;
   }
 
   .members-birthday {
-    margin: 1em 0.5em 1em 0.5em;
+    margin: 1em 0.5em;
   }
 
   a {
@@ -193,43 +189,74 @@
     flex-direction: row;
     align-items: stretch;
     border: 2px solid var(--primary-color);
-    border-radius: 0.5em;
     overflow: hidden;
     text-decoration: none;
   }
 
   .day-number {
-    font-size: 2rem;
+    flex: 0 0 3rem;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--secondary-text);
     background-color: var(--primary-color);
-    width: 3rem;
-    flex-shrink: 0;
     border-right: 2px solid var(--primary-color);
     font-family: var(--secondary-font-family);
+
+    @media (min-width: 768px) {
+      flex: 0 0 4rem;
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: 1025px) {
+      flex: 0 0 5rem;
+      font-size: 1.6rem;
+    }
   }
 
   .member-name {
-    font-size: 1.3em;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: 1rem;
+    padding: 0.5rem;
     color: black;
-    padding: 1em;
     border-right: 2px solid var(--primary-color);
-    flex-grow: 1;
     font-family: var(--secondary-font-family);
-    border-radius: 0;
+
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+      padding: 0.75rem;
+    }
+
+    @media (min-width: 1025px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  .member-mugshot-container {
+    flex: 0 0 4rem;
+    height: 4rem;
+    display: flex;
+
+    @media (min-width: 768px) {
+      flex: 0 0 6rem;
+      height: 6rem;
+    }
+
+    @media (min-width: 1025px) {
+      flex: 0 0 7rem;
+      height: 7rem;
+    }
   }
 
   .member-mugshot {
-    width: 5rem;
-    height: 5rem;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    flex-shrink: 0;
   }
 
   .no-birthday {
