@@ -20,7 +20,7 @@
 
 <a href="/">Terug naar overzicht</a>
 
-<div class="profile-container">
+<div class="profile-container animation-fade-in" style="--delay: 0.25s">
   <div class="img-container">
     <img
       src={member.mugshot
