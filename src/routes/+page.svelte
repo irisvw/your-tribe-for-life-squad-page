@@ -64,7 +64,7 @@
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
-  <details class="animation-fade-in--down" style="--delay: {i * 0.05}s">
+  <details class="animation-fade-in--down" style="--delay: {i * 0.05}s" name=months>
     <summary>{month}</summary>
     <ol>
       {#each membersByMonth[i] as member}
