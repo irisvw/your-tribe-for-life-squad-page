@@ -2,19 +2,19 @@
   let { data } = $props();
   const members = data.members;
   const months = [
-    "Januari",
-    "Februari",
-    "Maart",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Augustus",
-    "September",
-    "Oktober",
-    "November",
-    "December",
-    "Onbekend",
+    "JANUARI",
+    "FEBRUARI",
+    "MAART",
+    "APRIL",
+    "MEI",
+    "JUNI",
+    "JULI",
+    "AUGUSTUS",
+    "SEPTEMBER",
+    "OKTOBER",
+    "NOVEMBER",
+    "DECEMBER",
+    "ONBEKEND",
   ];
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -55,7 +55,7 @@
   <style>
     body {
       background-color: var(--bg-general);
-      margin: 1rem 2rem;
+      margin: 1rem;
       min-height: 100vh;
     }
   </style>
@@ -64,7 +64,11 @@
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
-  <details class="animation-fade-in--down" style="--delay: {i * 0.05}s" name=months>
+  <details
+    class="animation-fade-in--down"
+    style="--delay: {i * 0.05}s"
+    name="months"
+  >
     <summary>{month}</summary>
     <ol>
       {#each membersByMonth[i] as member}
@@ -75,8 +79,17 @@
               class="member-name {member.day_number == currentDay &&
               member.month_number == currentMonth
                 ? 'birthday-mode'
-                : ''}">{member.name}</span
+                : ''}"
             >
+              {member.name}
+            </span>
+            <img
+              class="member-mugshot"
+              src={member.mugshot
+                ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
+                : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
+              alt={member.name}
+            />
           </a>
         </li>
       {:else}
@@ -94,15 +107,13 @@
   h1 {
     display: flex;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2.6rem;
     font-family: var(--primary-font-family);
   }
 
   details {
     background-color: var(--secondary-color);
-    margin: 1em;
-    padding: 1em;
-    border-radius: 1em;
+    margin: 2em;
     border: 0.125em solid;
     overflow: hidden;
 
@@ -123,6 +134,7 @@
       content: "▼";
       rotate: 180deg;
       transition: 0.3s;
+      margin-right: 1em;
     }
 
     @media screen and (min-width: 768px) {
@@ -132,19 +144,31 @@
   }
 
   summary {
-    font-family: var(--primary-font-family);
-    font-size: 2rem;
+    font-family: var(--secondary-font-family);
+    font-size: 1.6rem;
     list-style: none;
     position: relative;
     display: flex;
     justify-content: center;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 1rem;
+    transition:
+      background 0.3s,
+      color 0.3s;
+  }
 
-    &::after {
-      content: "▼";
-      position: absolute;
-      right: 0;
-      transition: 0.3s;
-    }
+  summary::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    transition: 0.3s;
+    margin-right: 1em;
+  }
+
+  details[open] > summary {
+    background-color: var(--primary-color);
+    color: var(--secondary-text);
   }
 
   summary::-webkit-details-marker {
@@ -153,6 +177,7 @@
 
   ol {
     list-style: none;
+    padding-inline-start: 0;
   }
 
   .members-birthday {
@@ -166,36 +191,45 @@
   .members-birthday a {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5em;
+    overflow: hidden;
+    text-decoration: none;
   }
 
   .day-number {
     font-size: 2rem;
-    margin: 0em 1em 0em 0em;
-    color: black;
     display: flex;
     justify-content: center;
-    width: 1em;
+    align-items: center;
+    color: var(--secondary-text);
+    background-color: var(--primary-color);
+    width: 3rem;
+    flex-shrink: 0;
+    border-right: 2px solid var(--primary-color);
     font-family: var(--secondary-font-family);
-
-    &:hover {
-      color: #406a58;
-    }
   }
 
   .member-name {
-    font-size: 1.1em;
-    padding: 1em;
-    background-color: #aacad4;
-    border-radius: 0.5em;
-    color: black;
-    width: 100%;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: black;
+    padding: 1em;
+    border-right: 2px solid var(--primary-color);
+    flex-grow: 1;
     font-family: var(--secondary-font-family);
+    border-radius: 0;
+  }
 
-    &:hover {
-      background-color: #6dbf9d;
-    }
+  .member-mugshot {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   .no-birthday {
