@@ -192,6 +192,11 @@
         &:hover {
             cursor: url('$lib/assets/party.svg'), pointer;
         }
+
+        &::after {
+          padding-left: .25em;
+          content: "🥳";
+        }
     }
 
     @keyframes gradient {
