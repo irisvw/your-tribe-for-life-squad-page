@@ -154,6 +154,10 @@
   ol {
     list-style: none;
     padding: 0;
+
+    @media screen and (min-width: 768px) {
+    padding: .5em 0em 0em 0em;
+    }
   }
 
   .members-birthday {
