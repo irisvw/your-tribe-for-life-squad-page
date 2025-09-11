@@ -24,6 +24,23 @@
 {@render children?.()}
 
 <style>
+:root {
+		--primary-font-family: "Caprasimo", serif;
+		--secondary-font-family: "Belanosima", sans-serif;
+	
+		--primary-color: #000000 ;
+		--secondary-color: #FFFFFF ;
+		--bg-general: #C2ECC0;
+		--bg-color-1: #DAC1E4;
+		--bg-color-2: #C1D1E4;
+		--bg-color-3: #FAE3B8; 
+		--error-color: #ff7171;
+		--primary-text: #000000 ;
+		--secondary-text: #FFFFFF ; 
+
+		--border: 2px solid var(--primary-color);
+	}
+  
   :global(::view-transition-old(root), ::view-transition-new(root)) {
     animation-duration: 0.45s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,3 +85,4 @@
     }
   }
 </style>
+

@@ -1,184 +1,214 @@
 <script>
-    let { data } = $props();
-    const members = data.members;
-    const months = [
-        "Januari",
-        "Februari",
-        "Maart",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Augustus",
-        "September",
-        "Oktober",
-        "November",
-        "December",
-        "Onbekend",
-    ];
+  let { data } = $props();
+  const members = data.members;
+  const months = [
+    "Januari",
+    "Februari",
+    "Maart",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Augustus",
+    "September",
+    "Oktober",
+    "November",
+    "December",
+    "Onbekend",
+  ];
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
 
-    members.forEach((member) => {
-        if (member.birthdate) {
-            const dateString = member.birthdate;
-            const date = new Date(dateString); // converteert datum string naar Date object
-            member.month_number = date.getMonth();
-            member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
-        } else {
-            // member.month_name = "onbekend";
-            member.month_number = 12;
-            member.day_number = "?";
-        }
-    });
+  members.forEach((member) => {
+    if (member.birthdate) {
+      const dateString = member.birthdate;
+      const date = new Date(dateString); // converteert datum string naar Date object
+      member.month_number = date.getMonth();
+      member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+    } else {
+      member.month_number = 12;
+      member.day_number = "?";
+    }
+  });
 
-    // Maak een nieuw array gebaseerd op de months array.
-    // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
-    // Sorteer daarna alleen die members.
-    const membersByMonth = months.map((month, index) =>
-        members
-            .filter((member) => member.month_number === index)
-            .sort((a, b) => a.day_number - b.day_number),
-    );
+  members.push({
+    name: "Birthday Every Day",
+    month_number: currentMonth,
+    day_number: currentDay,
+  });
 
-    console.log(membersByMonth);
+  // Maak een nieuw array gebaseerd op de months array.
+  // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
+  // Sorteer daarna alleen die members.
+  const membersByMonth = months.map((month, index) =>
+    members
+      .filter((member) => member.month_number === index)
+      .sort((a, b) => a.day_number - b.day_number)
+  );
 </script>
 
 <svelte:head>
-    <title>Overzichtspagina</title>
-    <meta name="description" content="Overzichtspagina Squadpage" />
+  <title>Overzichtspagina</title>
+  <meta name="description" content="Overzichtspagina Squadpage" />
 
-      <style>
+  <style>
     body {
-      background-color: #C1D1E4;
+      background-color: var(--bg-general);
       margin: 1rem 2rem;
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
     }
   </style>
 </svelte:head>
 
-<h1>Kalender</h1>
-
+<h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 {#each months as month, i}
-    <details>
-        <summary>{month}</summary>
-        <ul>
-            {#each membersByMonth[i] as member}
-                <li class="members-birthday">
-                    <a href="/{member.id}">
-                        <!-- {member.day_number} {member.name} -->
-                        <span class="day-number">{member.day_number}</span>
-                        <span class="member-name">{member.name}</span>
-                    </a>
-                </li>
-            {:else}
-                <li class="no-birthday">No birthdays this month :(</li>
-            {/each}
-        </ul>
-    </details>
+  <details class="animation-fade-in--down" style="--delay: {i * 0.05}s">
+    <summary>{month}</summary>
+    <ol>
+      {#each membersByMonth[i] as member}
+        <li class="members-birthday">
+          <a href="/{member.id}">
+            <span class="day-number">{member.day_number}</span>
+            <span
+              class="member-name {member.day_number == currentDay &&
+              member.month_number == currentMonth
+                ? 'birthday-mode'
+                : ''}">{member.name}</span
+            >
+          </a>
+        </li>
+      {:else}
+        <li class="no-birthday">No birthdays this month :(</li>
+      {/each}
+    </ol>
+  </details>
 {/each}
 
-
 <style>
-    h1 {
-        display: flex;
-        justify-content: center;
-        font-size: 3rem;
-        font-family: "Caprasimo", serif;
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    font-family: var(--primary-font-family);
+  }
+
+  details {
+    background-color: var(--secondary-color);
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: 0.125em solid;
+    overflow: hidden;
+
+    &::details-content {
+      block-size: 0;
+      transition-property: block-size, content-visibility;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+      padding: 1px;
     }
 
-    details {
-        background-color: white;
-        margin: 1em;
-        padding: 1em;
-        border-radius: 1em;
-        border: 0.125em solid;
-
-        @media screen and (min-width: 768px) {
-        max-width: 35em; 
-        margin: 1em auto 1em auto;
-    }
+    &[open]::details-content {
+      block-size: auto;
+      block-size: calc-size(auto);
     }
 
-    summary {
-        font-family: "Caprasimo", serif;
-        font-size: 2rem;
-        list-style: none;
-        position: relative;
-        display: flex;
-        justify-content: center;
+    &[open] > summary::after {
+      content: "▼";
+      rotate: 180deg;
+      transition: 0.3s;
     }
 
-    summary::after {
-        content: "▼";
-        position: absolute;
-        right: 0;
-        transition: .3s;
+    @media screen and (min-width: 768px) {
+      max-width: 35em;
+      margin: 1em auto 1em auto;
     }
+  }
 
-    details[open] > summary::after {
-        content: "▼";
-        rotate: 180deg;
-        transition: .3s;
+  summary {
+    font-family: var(--primary-font-family);
+    font-size: 2rem;
+    list-style: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: 0.3s;
     }
+  }
 
-    summary::-webkit-details-marker {
-        display: none;
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  ol {
+    list-style: none;
+  }
+
+  .members-birthday {
+    margin: 1em 0.5em 1em 0.5em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .members-birthday a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .day-number {
+    font-size: 2rem;
+    margin: 0em 1em 0em 0em;
+    color: black;
+    display: flex;
+    justify-content: center;
+    width: 1em;
+    font-family: var(--secondary-font-family);
+
+    &:hover {
+      color: #406a58;
     }
+  }
 
-    ul {
-        list-style: none;
+  .member-name {
+    font-size: 1.1em;
+    padding: 1em;
+    background-color: #aacad4;
+    border-radius: 0.5em;
+    color: black;
+    width: 100%;
+    text-align: center;
+    font-family: var(--secondary-font-family);
+
+    &:hover {
+      background-color: #6dbf9d;
     }
+  }
 
-    .members-birthday {
-        margin: 1em 0.5em 1em 0.5em;
-    }
+  .no-birthday {
+    font-size: 1.1em;
+    font-family: var(--secondary-font-family);
+    padding: 1em;
+    background-color: #aacad4;
+    border-radius: 0.5em;
+    color: var(--primary-text);
+    display: inline-block;
+  }
 
-    a {
-        text-decoration: none;
-    }
-
-    .members-birthday a {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .day-number {
-        font-size: 2rem;
-        margin: 0em 1em 0em 0em;
-        color: black;
-        display: flex;
-        justify-content: center;
-        width: 1em;
-        font-family: "Belanosima", sans-serif;
-        &:hover{
-            color: #406a58;
-        }
-    }
-
-    .member-name {
-        font-size: 1.1em;
-        padding: 1em;
-        background-color: #aacad4;
-        border-radius: 0.5em;
-        color: black;
-        width: 100%;
-        text-align: center;
-        font-family: "Belanosima", sans-serif;
-        &:hover{
-            background-color: #6dbf9d;
-        }
-    }
-
-    .no-birthday {
-        font-size: 1.1em;
-        font-family: "Belanosima", sans-serif;
-        padding: 1em;
-        background-color: #aacad4;
-        border-radius: 0.5em;
-        color: black;
-        display: inline-block;
-    }
-
+  .birthday-mode {
+    background: linear-gradient(red, yellow, green, blue, purple);
+  }
 </style>
