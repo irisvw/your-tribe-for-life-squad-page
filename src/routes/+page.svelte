@@ -184,7 +184,10 @@
     .birthday-mode {
         background: linear-gradient(90deg in oklch, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3));
         background-size: 400% 400%;
-        animation: gradient 3.5s ease infinite;
+        
+        @media (prefers-reduced-motion: no-preference) {
+            animation: gradient 3.5s ease infinite;
+        }
 
         &:hover {
             cursor: url('$lib/assets/party.svg'), pointer;
