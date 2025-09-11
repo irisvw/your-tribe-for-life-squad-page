@@ -63,6 +63,14 @@
 
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
+<p class="animation-fade-in intro-text" style="--delay: 0.25s">
+  Welkom op onze squadpage! 🎉 <br />
+  <br />
+  Hier zie je precies wanneer iedereen jarig is (want die dagen zijn natuurlijk de
+  leukste 🍰). Klik op een maand voor het overzicht van jarige squadleden en leer
+  ze meteen beter kennen.
+</p>
+
 {#each months as month, i}
     <details
         class="animation-fade-in--down"
@@ -102,6 +110,17 @@
         font-size: 3rem;
         font-family: var(--primary-font-family);
     }
+
+ .intro-text {
+    text-align: center;
+    font-family: var(--secondary-font-family);
+    font-weight: 100;
+    line-height: 1.3;
+    font-size: 1.4rem;
+    max-width: 30em;
+    margin: auto;
+    padding-bottom: 1em;
+  }
 
     details {
         background-color: var(--secondary-color);
