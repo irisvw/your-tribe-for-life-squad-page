@@ -24,7 +24,7 @@
   <div class="img-container">
     <img
       src={member.mugshot
-        ? `https://fdnd.directus.app/assets/${member.mugshot}`
+        ? `https://fdnd.directus.app/assets/${member.mugshot}?width=500&height=400`
         : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
       alt={member.name}
     />
@@ -48,7 +48,7 @@
       <ul>
         <li>
           {#if member.bio}
-            <span>{member.bio}</span>
+            <span>{@html member.bio}</span>
           {:else}
             <span>Geen bio beschikbaar</span>
           {/if}

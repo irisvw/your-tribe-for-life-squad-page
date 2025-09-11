@@ -61,15 +61,15 @@
   </style>
 </svelte:head>
 
-<p class="intro-text">
-  Welkom op onze squadpage! <br />
-  <br />
-  Hier vind je wie er allemaal in onze squad zitten, wanneer we jarig zijn (heel
-  belangrijk 🍰) en kan je ons beter leren kennen. Klik op een maand voor een overzicht
-  van jarige studenten.
-</p>
-
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
+
+<p class="animation-fade-in intro-text" style="--delay: 0.25s">
+  Welkom op onze squadpage! 🎉 <br />
+  <br />
+  Hier zie je precies wanneer iedereen jarig is (want die dagen zijn natuurlijk de
+  leukste 🍰). Klik op een maand voor het overzicht van jarige squadleden en leer
+  ze meteen beter kennen.
+</p>
 
 {#each months as month, i}
   <details class="animation-fade-in--down" style="--delay: {i * 0.05}s">
@@ -99,22 +99,22 @@
     interpolate-size: allow-keywords;
   }
 
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    font-family: var(--primary-font-family);
+  }
+
   .intro-text {
     text-align: center;
     font-family: var(--secondary-font-family);
     font-weight: 100;
     line-height: 1.3;
     font-size: 1.4rem;
-    max-width: 35em;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-
-  h1 {
-    display: flex;
-    justify-content: center;
-    font-size: 3rem;
-    font-family: var(--primary-font-family);
+    max-width: 30em;
+    margin: auto;
+    padding-bottom: 1em;
   }
 
   details {
