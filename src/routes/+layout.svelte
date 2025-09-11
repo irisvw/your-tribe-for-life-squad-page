@@ -24,23 +24,23 @@
 {@render children?.()}
 
 <style>
-:root {
-		--primary-font-family: "Caprasimo", serif;
-		--secondary-font-family: "Belanosima", sans-serif;
-	
-		--primary-color: #000000 ;
-		--secondary-color: #FFFFFF ;
-		--bg-general: #C2ECC0;
-		--bg-color-1: #DAC1E4;
-		--bg-color-2: #C1D1E4;
-		--bg-color-3: #FAE3B8; 
-		--error-color: #ff7171;
-		--primary-text: #000000 ;
-		--secondary-text: #FFFFFF ; 
+  :root {
+    --primary-font-family: "Caprasimo", serif;
+    --secondary-font-family: "Belanosima", sans-serif;
 
-		--border: 2px solid var(--primary-color);
-	}
-  
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --bg-general: #c2ecc0;
+    --bg-color-1: #dac1e4;
+    --bg-color-2: #c1d1e4;
+    --bg-color-3: #fae3b8;
+    --error-color: #ff7171;
+    --primary-text: #000000;
+    --secondary-text: #ffffff;
+
+    --border: 2px solid var(--primary-color);
+  }
+
   :global(::view-transition-old(root), ::view-transition-new(root)) {
     animation-duration: 0.45s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -84,5 +84,19 @@
       opacity: 0;
     }
   }
-</style>
 
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color-3: #6E3883;
+      --primary-color: #ffffff;
+      --secondary-color: #000000;
+      --bg-general: #c2ecc0;
+      --bg-color-1: #dac1e4;
+      --bg-color-2: #c1d1e4;
+      --bg-color-3: #fae3b8;
+      --error-color: #ff7171;
+      --primary-text: #ffffff;
+      --secondary-text: #000000;
+    }
+  }
+</style>

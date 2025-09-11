@@ -140,6 +140,7 @@
 
   summary {
     font-family: var(--secondary-font-family);
+    color: var(--primary-color);
     font-size: 1.6rem;
     list-style: none;
     position: relative;
@@ -223,7 +224,7 @@
     text-align: center;
     font-size: 1rem;
     padding: 0.5rem;
-    color: black;
+    color: var(--primary-text);
     border-right: 2px solid var(--primary-color);
     font-family: var(--secondary-font-family);
 
