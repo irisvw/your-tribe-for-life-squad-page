@@ -88,6 +88,7 @@
 </p>
 
 <!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
+ <div class="filters">
 <label>
   <input type="checkbox" value="2E" bind:group={selectedSquads} />
   2E
@@ -96,6 +97,7 @@
   <input type="checkbox" value="2F" bind:group={selectedSquads} />
   2F
 </label>
+</div>
 
 <!-- re-render when selectedSquad changes -->
 {#key selectedSquads}
@@ -163,6 +165,42 @@
     margin: auto;
     padding-bottom: 1em;
   }
+
+  .filters{
+    display: flex;
+    justify-content: center;
+  }
+
+  label{
+    background-color: var(--secondary-color);
+    border: var(--border);
+    padding: 1em;
+    font-family: var(--secondary-font-family);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+    margin: 1em;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]{
+    appearance: none;
+    position: relative;
+    width: 1em;
+    height: .5em;
+  }
+
+input[type="checkbox"]::before {
+  content: "❌"; 
+  position: absolute;
+  font-size: 1.2em;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[type="checkbox"]:checked::before {
+  content: "🎁"; 
+  color: green;
+}
 
   details {
     background-color: var(--secondary-color);
