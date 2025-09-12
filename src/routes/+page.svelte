@@ -79,6 +79,14 @@
 
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
+<p class="animation-fade-in intro-text" style="--delay: 0.25s">
+  Welkom op onze squadpage! 🎉 <br />
+  <br />
+  Hier zie je precies wanneer iedereen jarig is (want die dagen zijn natuurlijk de
+  leukste 🍰). Klik op een maand voor het overzicht van jarige squadleden en leer
+  ze meteen beter kennen.
+</p>
+
 <!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
 <label>
   <input type="checkbox" value="2E" bind:group={selectedSquads} />
@@ -106,7 +114,12 @@
           <li class="members-birthday">
             <a href="/{member.id}">
               <span class="day-number">{member.day_number}</span>
-              <span class="member-name">{member.name}</span>
+              <span
+                class="member-name {member.day_number == currentDay &&
+                member.month_number == currentMonth
+                  ? 'birthday-mode'
+                  : ''}">{member.name}</span
+              >
               <div class="member-mugshot-container">
                 <img
                   class="member-mugshot"
@@ -140,9 +153,20 @@
     font-family: var(--primary-font-family);
   }
 
+  .intro-text {
+    text-align: center;
+    font-family: var(--secondary-font-family);
+    font-weight: 100;
+    line-height: 1.3;
+    font-size: 1.4rem;
+    max-width: 30em;
+    margin: auto;
+    padding-bottom: 1em;
+  }
+
   details {
     background-color: var(--secondary-color);
-    margin: 2em;
+    margin: 1em;
     border: 0.125em solid;
     overflow: hidden;
 
@@ -219,13 +243,29 @@
     text-decoration: none;
   }
 
-  .members-birthday a {
+  .members-birthday a,
+  .no-birthday {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     border: 2px solid var(--primary-color);
     overflow: hidden;
     text-decoration: none;
+  }
+
+  .no-birthday {
+    padding: 1em;
+    justify-content: center;
+    font-size: 1rem;
+    font-family: var(--secondary-font-family);
+
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: 1025px) {
+      font-size: 1.6rem;
+    }
   }
 
   .day-number {
@@ -294,17 +334,38 @@
     object-fit: cover;
   }
 
-  .no-birthday {
-    font-size: 1.1em;
-    font-family: var(--secondary-font-family);
-    padding: 1em;
-    background-color: #aacad4;
-    border-radius: 0.5em;
-    color: var(--primary-text);
-    display: inline-block;
+  .birthday-mode {
+    background: linear-gradient(
+      90deg in oklch,
+      var(--bg-color-1),
+      var(--bg-color-2),
+      var(--bg-color-3)
+    );
+    background-size: 400% 400%;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: gradient 3.5s ease infinite;
+    }
+
+    &:hover {
+      cursor: url("$lib/assets/party.svg"), pointer;
+    }
+
+    &::after {
+      padding-left: 0.25em;
+      content: "🥳";
+    }
   }
 
-  .birthday-mode {
-    background: linear-gradient(red, yellow, green, blue, purple);
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 </style>

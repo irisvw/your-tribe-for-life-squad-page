@@ -1,8 +1,32 @@
-# sv
+# Your Tribe for Life Squad Page
+
+## Inhoudsopgave
+
+  * [Beschrijving](#beschrijving)
+  * [Gebruik](#gebruik)
+  * [Kenmerken](#kenmerken)
+  * [Installatie](#installatie)
+  * [Bronnen](#bronnen)
+  * [Licentie](#licentie)
+
+## Beschrijving
+<!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
+<!-- Voeg een mooie poster visual toe 📸 -->
+<!-- Voeg een link toe naar Github Pages 🌐-->
+Figma: https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-sprint-13?node-id=0-1&t=DO1S2PWpNQfFTdVs-1
+
+## Gebruik
+<!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
+
+## Kenmerken
+<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framwork of library gebruikt? -->
+
+## Installatie
+<!-- Bij Instalatie staat hoe een andere developer aan jouw repo kan werken -->
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Creating a project
+### Creating a project
 
 If you're seeing this, you've probably already done this step. Congrats!
 
@@ -14,7 +38,7 @@ npx sv create
 npx sv create my-app
 ```
 
-## Developing
+### Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
@@ -25,7 +49,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+### Building
 
 To create a production version of your app:
 
@@ -36,3 +60,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Bronnen
+
+## Licentie
+
+This project is licensed under the terms of the [MIT license](./LICENSE).
+
+
+
