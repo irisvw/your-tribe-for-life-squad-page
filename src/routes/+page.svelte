@@ -87,7 +87,7 @@
               class="member-name {member.day_number == currentDay &&
               member.month_number == currentMonth
                 ? 'birthday-mode'
-                : ''}">{member.name}">{member.name}</span
+                : ''}">{member.name}</span
             >
             <div class="member-mugshot-container">
               <img
