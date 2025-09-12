@@ -20,44 +20,48 @@
   const currentMonth = today.getMonth();
   const currentDay = today.getDate();
 
-  let selectedSquads = $state([]);
+  // beide squads zijn geselecteerd bij default. deze waarde hangt af van de selectedSquads checkboxes.
+  let selectedSquads = $state(["2E", "2F"]);
+
+  // push een member die elke dag jarig is - als hij nog niet bestaat
+  if (!members.some((member) => member.name === "Birthday Every Day")) {
+    members.push({
+      name: "Birthday Every Day",
+      month_number: currentMonth,
+      day_number: currentDay,
+      squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
+    });
+  }
 
   members.forEach((member) => {
+    // converteer elk member's brithdate naar een dag en maand
     if (member.birthdate) {
       const dateString = member.birthdate;
       const date = new Date(dateString); // converteert datum string naar Date object
       member.month_number = date.getMonth();
       member.day_number = date.getDate(); // converteert datum naar dag van de maand en slaat het op in member
+    } else if (member.name == "Birthday Every Day") {
+      // doe niets (haal dit weg als we birthday every day eruit halen)
     } else {
+      // vul default waardes in als birthdate niet bestaat
       member.month_number = 12;
       member.day_number = "?";
     }
+
+    // haal de namen van de squadnames uit de data en sla ze op in een nieuwe key genaamd squadnames
     member.squadnames = member.squads.map((item) => {
-      if (item.squad_id && item.squad_id.name) {
-        return item.squad_id.name;
-      } else {
-        return null;
-      }
+      return item.squad_id.name;
     });
   });
 
-  members.push({
-    name: "Birthday Every Day",
-    month_number: currentMonth,
-    day_number: currentDay,
-    squadnames: ["1G", "2F"],
-  });
-
-  // Maak een nieuw array gebaseerd op de months array.
-  // Voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
-  // Sorteer daarna alleen die members.
+  // maak een nieuw array gebaseerd op de months array.
+  // voor elke maand, kopieer alle members wiens month_number overeen komen met de index.
+  // sorteer daarna alleen die members.
   const membersByMonth = months.map((month, index) =>
     members
       .filter((member) => member.month_number === index)
       .sort((a, b) => a.day_number - b.day_number),
   );
-
-  console.log(members);
 </script>
 
 <svelte:head>
@@ -75,6 +79,7 @@
 
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
+<!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
 <label>
   <input type="checkbox" value="2E" bind:group={selectedSquads} />
   2E
@@ -83,9 +88,10 @@
   <input type="checkbox" value="2F" bind:group={selectedSquads} />
   2F
 </label>
-<p>Squads: {selectedSquads.join(", ") || "None"}</p>
 
+<!-- re-render when selectedSquad changes -->
 {#key selectedSquads}
+  <!-- i staat hier voor index -->
   {#each months as month, i}
     <details
       class="animation-fade-in--down"
@@ -94,24 +100,26 @@
     >
       <summary>{month}</summary>
       <ol>
-        {#each membersByMonth[i] as member}
-          {#if selectedSquads.some((item) => member.squadnames.includes(item))}
-            <li class="members-birthday">
-              <a href="/{member.id}">
-                <span class="day-number">{member.day_number}</span>
-                <span class="member-name">{member.name}</span>
-                <div class="member-mugshot-container">
-                  <img
-                    class="member-mugshot"
-                    src={member.mugshot
-                      ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
-                      : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
-                    alt={member.name}
-                  />
-                </div>
-              </a>
-            </li>
-          {/if}
+        <!-- pak alle members die bij een bepaalde maand horen (0 = januari, 1 = februari etc. ).
+         filter de members door te checken of hun squadnames in selectedSquads voorkomen. -->
+        {#each membersByMonth[i].filter( (member) => selectedSquads.some( (squad) => member.squadnames.includes(squad), ), ) as member}
+          <li class="members-birthday">
+            <a href="/{member.id}">
+              <span class="day-number">{member.day_number}</span>
+              <span class="member-name">{member.name}</span>
+              <div class="member-mugshot-container">
+                <img
+                  class="member-mugshot"
+                  src={member.mugshot
+                    ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
+                    : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
+                  alt={member.name}
+                />
+              </div>
+            </a>
+          </li>
+
+          <!-- als er geen members zijn uit de selectedSquads deze maand, render dan 'No birthdays this month'. -->
         {:else}
           <li class="no-birthday">No birthdays this month :(</li>
         {/each}
