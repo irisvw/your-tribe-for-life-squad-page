@@ -184,13 +184,29 @@
     text-decoration: none;
   }
 
-  .members-birthday a {
+  .members-birthday a,
+  .no-birthday {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     border: 2px solid var(--primary-color);
     overflow: hidden;
     text-decoration: none;
+  }
+
+  .no-birthday {
+    padding: 1em;
+    justify-content: center;
+    font-size: 1rem;
+    font-family: var(--secondary-font-family);
+
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: 1025px) {
+      font-size: 1.6rem;
+    }
   }
 
   .day-number {
@@ -259,7 +275,7 @@
     object-fit: cover;
   }
 
-  .no-birthday {
+  /* .no-birthday {
     font-size: 1.1em;
     font-family: var(--secondary-font-family);
     padding: 1em;
@@ -267,7 +283,7 @@
     border-radius: 0.5em;
     color: var(--primary-text);
     display: inline-block;
-  }
+  } */
 
   .birthday-mode {
     background: linear-gradient(red, yellow, green, blue, purple);
