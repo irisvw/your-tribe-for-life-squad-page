@@ -20,6 +20,8 @@
   const currentMonth = today.getMonth();
   const currentDay = today.getDate();
 
+  let selectedSquads = $state([]);
+
   members.forEach((member) => {
     if (member.birthdate) {
       const dateString = member.birthdate;
@@ -30,12 +32,20 @@
       member.month_number = 12;
       member.day_number = "?";
     }
+    member.squadnames = member.squads.map((item) => {
+      if (item.squad_id && item.squad_id.name) {
+        return item.squad_id.name;
+      } else {
+        return null;
+      }
+    });
   });
 
   members.push({
     name: "Birthday Every Day",
     month_number: currentMonth,
     day_number: currentDay,
+    squadnames: ["1G", "2F"],
   });
 
   // Maak een nieuw array gebaseerd op de months array.
@@ -44,8 +54,10 @@
   const membersByMonth = months.map((month, index) =>
     members
       .filter((member) => member.month_number === index)
-      .sort((a, b) => a.day_number - b.day_number)
+      .sort((a, b) => a.day_number - b.day_number),
   );
+
+  console.log(members);
 </script>
 
 <svelte:head>
@@ -63,36 +75,50 @@
 
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
-{#each months as month, i}
-  <details
-    class="animation-fade-in--down"
-    style="--delay: {i * 0.05}s"
-    name="months"
-  >
-    <summary>{month}</summary>
-    <ol>
-      {#each membersByMonth[i] as member}
-        <li class="members-birthday">
-          <a href="/{member.id}">
-            <span class="day-number">{member.day_number}</span>
-            <span class="member-name">{member.name}</span>
-            <div class="member-mugshot-container">
-              <img
-                class="member-mugshot"
-                src={member.mugshot
-                  ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
-                  : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
-                alt={member.name}
-              />
-            </div>
-          </a>
-        </li>
-      {:else}
-        <li class="no-birthday">No birthdays this month :(</li>
-      {/each}
-    </ol>
-  </details>
-{/each}
+<label>
+  <input type="checkbox" value="2E" bind:group={selectedSquads} />
+  2E
+</label>
+<label>
+  <input type="checkbox" value="2F" bind:group={selectedSquads} />
+  2F
+</label>
+<p>Squads: {selectedSquads.join(", ") || "None"}</p>
+
+{#key selectedSquads}
+  {#each months as month, i}
+    <details
+      class="animation-fade-in--down"
+      style="--delay: {i * 0.05}s"
+      name="months"
+    >
+      <summary>{month}</summary>
+      <ol>
+        {#each membersByMonth[i] as member}
+          {#if selectedSquads.some((item) => member.squadnames.includes(item))}
+            <li class="members-birthday">
+              <a href="/{member.id}">
+                <span class="day-number">{member.day_number}</span>
+                <span class="member-name">{member.name}</span>
+                <div class="member-mugshot-container">
+                  <img
+                    class="member-mugshot"
+                    src={member.mugshot
+                      ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
+                      : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
+                    alt={member.name}
+                  />
+                </div>
+              </a>
+            </li>
+          {/if}
+        {:else}
+          <li class="no-birthday">No birthdays this month :(</li>
+        {/each}
+      </ol>
+    </details>
+  {/each}
+{/key}
 
 <style>
   :root {
