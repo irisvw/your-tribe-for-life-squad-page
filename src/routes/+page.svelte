@@ -179,6 +179,7 @@
       padding: 1px;
     }
 
+    /* Berekend automatisch hoeveel ruimte het opegngeklapte block moet hebben en hoeveel rijen hij aanmaakt */
     &[open]::details-content {
       block-size: auto;
       block-size: calc-size(auto);
