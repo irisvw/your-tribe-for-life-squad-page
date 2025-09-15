@@ -177,6 +177,9 @@
       transition-behavior: allow-discrete;
       padding: 1px;
     }
+    &[open] {
+      transform: none;
+    }
 
     &[open]::details-content {
       block-size: auto;
@@ -372,9 +375,12 @@
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     details:not([open]) {
+      view-timeline-name: --details;
+    }
+    details:not([open]) summary {
+      animation-timeline: --details;
       animation-name: animation-scroll-in;
       animation-timing-function: linear;
-      animation-timeline: view();
       animation-range: entry 0% entry 100%;
     }
   }
