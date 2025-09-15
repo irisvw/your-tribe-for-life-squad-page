@@ -389,12 +389,12 @@
 @keyframes animation-scroll-in {
   0% {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(100%) scale(0.5);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 </style>
