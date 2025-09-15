@@ -42,7 +42,8 @@
                 month: "long",
                 year: "numeric",
               })
-            : "Geen verjaardag bekend"}
+            :"Er is hier geen verjaardag bekend :("
+}
         </span>
       </div>
       <ul>
@@ -50,7 +51,7 @@
           {#if member.bio}
             <span>{@html member.bio}</span>
           {:else}
-            <span>Geen bio beschikbaar</span>
+            <span><strong>Er is hier geen bio beschikbaar :(</strong></span>
           {/if}
         </li>
         <li style="color: {member.fav_color}">This is my favorite color</li>
@@ -61,7 +62,7 @@
               Bezoek mijn website!
             </a>
           {:else}
-            <span>Geen website beschikbaar</span>
+            <span><strong>Er is hier geen website beschikbaar :(</strong></span>
           {/if}
         </li>
       </ul>
