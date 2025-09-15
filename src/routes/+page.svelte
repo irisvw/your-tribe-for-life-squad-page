@@ -372,7 +372,7 @@
     }
   }
 
-@supports (animation-timeline: view()) {
+@supports (animation-timeline: --details) {
   @media (prefers-reduced-motion: no-preference) {
     details:not([open]) {
       view-timeline-name: --details;
