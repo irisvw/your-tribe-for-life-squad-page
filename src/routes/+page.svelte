@@ -60,7 +60,7 @@
   const membersByMonth = months.map((month, index) =>
     members
       .filter((member) => member.month_number === index)
-      .sort((a, b) => a.day_number - b.day_number),
+      .sort((a, b) => a.day_number - b.day_number)
   );
 </script>
 
@@ -80,11 +80,12 @@
 <h1 class="animation-fade-in" style="--delay: 0.25s">Kalender</h1>
 
 <p class="animation-fade-in intro-text" style="--delay: 0.25s">
-  Welkom op onze squadpage! 🎉 <br />
-  <br />
-  Hier zie je precies wanneer iedereen jarig is (want die dagen zijn natuurlijk de
-  leukste 🍰). Klik op een maand voor het overzicht van jarige squadleden en leer
-  ze meteen beter kennen.
+  Welkom op onze squadpage! 🎉
+</p>
+<p class="animation-fade-in intro-text" style="--delay: 0.25s">
+  Hier zie je precies wanneer iedereen jarig is (want die dagen zijn natuurlijk
+  de leukste 🍰). Klik op een maand voor het overzicht van jarige squadleden en
+  leer ze meteen beter kennen.
 </p>
 
 <!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
@@ -112,7 +113,7 @@
       <ol>
         <!-- pak alle members die bij een bepaalde maand horen (0 = januari, 1 = februari etc. ).
          filter de members door te checken of hun squadnames in selectedSquads voorkomen. -->
-        {#each membersByMonth[i].filter( (member) => selectedSquads.some( (squad) => member.squadnames.includes(squad), ), ) as member}
+        {#each membersByMonth[i].filter( (member) => selectedSquads.some( (squad) => member.squadnames.includes(squad) ) ) as member}
           <li class="members-birthday">
             <a href="/{member.id}">
               <span class="day-number">{member.day_number}</span>
@@ -221,6 +222,7 @@ label:focus-within {
       padding: 1px;
     }
 
+    /* Berekend automatisch hoeveel ruimte het opegngeklapte block moet hebben en hoeveel rijen hij aanmaakt */
     &[open]::details-content {
       block-size: auto;
       block-size: calc-size(auto);

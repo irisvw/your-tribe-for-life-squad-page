@@ -42,7 +42,8 @@
                 month: "long",
                 year: "numeric",
               })
-            : "Geen verjaardag bekend"}
+            :"Er is hier geen verjaardag bekend :("
+}
         </span>
       </div>
       <ul>
@@ -50,18 +51,18 @@
           {#if member.bio}
             <span>{@html member.bio}</span>
           {:else}
-            <span>Geen bio beschikbaar</span>
+            <span><strong>Er is hier geen bio beschikbaar :(</strong></span>
           {/if}
         </li>
         <li style="color: {member.fav_color}">This is my favorite color</li>
-        <li>{member.fav_tag}</li>
+        <li class="member-tag">{member.fav_tag}</li>
         <li>
           {#if member.website}
             <a href={member.website} target="_blank" rel="noopener noreferrer">
               Bezoek mijn website!
             </a>
           {:else}
-            <span>Geen website beschikbaar</span>
+            <span><strong>Er is hier geen website beschikbaar :(</strong></span>
           {/if}
         </li>
       </ul>
@@ -121,6 +122,17 @@
     padding: 0.2rem 0;
     line-height: 1.2rem;
     max-width: 30rem;
+    margin: 0.5rem;
+  }
+
+  .member-tag {
+    font-family: "IBM Plex Mono", monospace;
+    background-color: #ededed;
+    border: 0.5px solid #323232;
+    width: fit-content;
+    margin: auto;
+    padding: 0.4rem;
+    border-radius: 10px;
   }
 
   .info {
