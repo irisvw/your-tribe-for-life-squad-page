@@ -368,4 +368,27 @@
       background-position: 0% 50%;
     }
   }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    details:not([open]) {
+      animation-name: animation-scroll-in;
+      animation-timing-function: linear;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+
+@keyframes animation-scroll-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>
