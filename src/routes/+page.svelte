@@ -88,6 +88,7 @@
 </p>
 
 <!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
+ <div class="filters animation-fade-in intro-text" style="--delay: 0.25s">
 <label>
   <input type="checkbox" value="2E" bind:group={selectedSquads} />
   2E
@@ -96,6 +97,7 @@
   <input type="checkbox" value="2F" bind:group={selectedSquads} />
   2F
 </label>
+</div>
 
 <!-- re-render when selectedSquad changes -->
 {#key selectedSquads}
@@ -162,6 +164,47 @@
     max-width: 30em;
     margin: auto;
     padding-bottom: 1em;
+  }
+
+  .filters{
+    display: flex;
+    justify-content: center;
+  }
+
+  label{
+    background-color: var(--secondary-color);
+    border: var(--border);
+    padding: 1em;
+    font-family: var(--secondary-font-family);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+    color: var( --primary-text);
+    margin: 1em;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]{
+    appearance: none;
+    width: 1em;
+    height: .5em;
+    margin: 0em 1em 0em 0em;
+  }
+
+input[type="checkbox"]::before {
+  content: "❌"; 
+  font-size: 1.2em;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "🎁"; 
+}
+
+label:focus-within {
+  outline: var(--border);
+  outline-offset: .5em;
+  }
+
+  input[type="checkbox"]:focus{
+    outline: none;
   }
 
   details {
