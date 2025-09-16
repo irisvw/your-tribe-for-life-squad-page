@@ -13,6 +13,8 @@
 <!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
 <!-- Voeg een mooie poster visual toe 📸 -->
 <!-- Voeg een link toe naar Github Pages 🌐-->
+
+Alternatieve live link: https://your-tribe-for-life-squad-page-gamma.vercel.app/
 Figma: https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-sprint-13?node-id=0-1&t=DO1S2PWpNQfFTdVs-1
 
 ## Gebruik
