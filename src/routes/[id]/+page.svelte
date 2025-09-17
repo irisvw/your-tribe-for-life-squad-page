@@ -24,7 +24,7 @@
   <div class="img-container">
     <img
       src={member.mugshot
-        ? `https://fdnd.directus.app/assets/${member.mugshot}?width=500&height=400`
+        ? `https://fdnd.directus.app/assets/${member.mugshot}?width=500&height=400&format=webp`
         : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
       alt={member.name}
     />

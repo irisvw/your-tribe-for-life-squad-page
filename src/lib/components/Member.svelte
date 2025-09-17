@@ -16,7 +16,7 @@
             <img
                 class="member-mugshot"
                 src={member.mugshot
-                    ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
+                    ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300&format=webp`
                     : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
                 alt={member.name}
             />
