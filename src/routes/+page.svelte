@@ -105,10 +105,10 @@
 {#key selectedSquads}
   <!-- i staat hier voor index -->
   {#each months as month, i}
-    <details
+    <details 
       class="animation-fade-in--down"
       style="--delay: {i * 0.05}s"
-      name="months"
+      name="months" 
     >
       <summary>{month}</summary>
       <ol>
@@ -245,6 +245,27 @@
       margin-right: 1em;
     }
   }
+
+  summary:focus {
+  background-color: var(--primary-color);
+  color: var(--secondary-text);
+}
+
+@supports selector(:has(summary:focus)) {
+  summary:focus {
+    background-color: unset;
+    color: unset;
+  }
+  
+  details:has(summary:focus) {
+    outline: var(--border);
+    outline-offset: .5em;
+  }
+}
+
+summary:focus {
+  outline: none;
+}
 
   details[open] > summary {
     background-color: var(--primary-color);
