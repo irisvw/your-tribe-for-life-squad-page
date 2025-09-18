@@ -79,6 +79,15 @@
     color: var(--primary-text);
   }
 
+  a {
+    font-family: var(--secondary-font-family);
+    color: var(--primary-text);
+  }
+
+  a:visited {
+    color: var(--primary-text);
+  }
+
   .profile-container {
     display: flex;
     flex-direction: column;
