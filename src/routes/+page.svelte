@@ -136,12 +136,14 @@
     justify-content: center;
     font-size: 2.6rem;
     font-family: var(--primary-font-family);
+    color: var(--primary-text);
   }
 
   .intro-text {
     text-align: center;
     font-family: var(--secondary-font-family);
     font-weight: 100;
+    color: var(--primary-text);
     line-height: 1.3;
     font-size: 1.4rem;
     max-width: 30em;
