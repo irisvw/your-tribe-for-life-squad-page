@@ -274,6 +274,7 @@
     justify-content: center;
     font-size: 1rem;
     font-family: var(--secondary-font-family);
+    color: var(--primary-text);
 
     @media (min-width: 768px) {
       font-size: 1.4rem;
