@@ -244,27 +244,19 @@
       transition: 0.3s;
       margin-right: 1em;
     }
+
+    &:focus{
+      background-color: var(--primary-color);
+      color: var(--secondary-text);
+      outline: none;
+    }
   }
 
-  summary:focus {
-  background-color: var(--primary-color);
-  color: var(--secondary-text);
-}
-
-@supports selector(:has(summary:focus)) {
-  summary:focus {
-    background-color: unset;
-    color: unset;
-  }
-  
+@supports selector(:has(summary:focus)) {  
   details:has(summary:focus) {
     outline: var(--border);
     outline-offset: .5em;
   }
-}
-
-summary:focus {
-  outline: none;
 }
 
   details[open] > summary {

@@ -97,6 +97,8 @@
       --error-color: #ff7171;
       --primary-text: #ffffff;
       --secondary-text: #000000;
+
+      --border: 2px solid var(--secondary-color);
     }
   }
 </style>
