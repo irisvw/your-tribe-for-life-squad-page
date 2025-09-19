@@ -42,6 +42,11 @@
     text-decoration: none;
   }
 
+  .members-birthday a:focus{
+    outline: var(--border);
+    outline-offset: 0.5em;
+  }
+
   .day-number {
     flex: 0 0 3rem;
     font-size: 1.2rem;
