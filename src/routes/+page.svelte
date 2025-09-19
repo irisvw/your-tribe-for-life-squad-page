@@ -1,5 +1,7 @@
 <script>
   let { data } = $props();
+  import Member from "$lib/components/Member.svelte";
+
   const members = data.members;
   const months = [
     "JANUARI",
@@ -24,14 +26,14 @@
   let selectedSquads = $state(["2E", "2F"]);
 
   // push een member die elke dag jarig is - als hij nog niet bestaat
-  if (!members.some((member) => member.name === "Birthday Every Day")) {
-    members.push({
-      name: "Birthday Every Day",
-      month_number: currentMonth,
-      day_number: currentDay,
-      squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
-    });
-  }
+  // if (!members.some((member) => member.name === "Birthday Every Day")) {
+  //   members.push({
+  //     name: "Birthday Every Day",
+  //     month_number: currentMonth,
+  //     day_number: currentDay,
+  //     squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
+  //   });
+  // }
 
   members.forEach((member) => {
     // converteer elk member's brithdate naar een dag en maand
@@ -88,14 +90,16 @@
 </p>
 
 <!-- deze checkboxes bepalen samen de waarde van selectedSquads -->
-<label>
-  <input type="checkbox" value="2E" bind:group={selectedSquads} />
-  2E
-</label>
-<label>
-  <input type="checkbox" value="2F" bind:group={selectedSquads} />
-  2F
-</label>
+<div class="filters animation-fade-in intro-text" style="--delay: 0.25s">
+  <label>
+    <input type="checkbox" value="2E" bind:group={selectedSquads} />
+    2E
+  </label>
+  <label>
+    <input type="checkbox" value="2F" bind:group={selectedSquads} />
+    2F
+  </label>
+</div>
 
 <!-- re-render when selectedSquad changes -->
 {#key selectedSquads}
@@ -111,27 +115,8 @@
         <!-- pak alle members die bij een bepaalde maand horen (0 = januari, 1 = februari etc. ).
          filter de members door te checken of hun squadnames in selectedSquads voorkomen. -->
         {#each membersByMonth[i].filter( (member) => selectedSquads.some( (squad) => member.squadnames.includes(squad), ), ) as member}
-          <li class="members-birthday">
-            <a href="/{member.id}">
-              <span class="day-number">{member.day_number}</span>
-              <span
-                class="member-name {member.day_number == currentDay &&
-                member.month_number == currentMonth
-                  ? 'birthday-mode'
-                  : ''}">{member.name}</span
-              >
-              <div class="member-mugshot-container">
-                <img
-                  class="member-mugshot"
-                  src={member.mugshot
-                    ? `https://fdnd.directus.app/assets/${member.mugshot}?width=300&height=300`
-                    : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
-                  alt={member.name}
-                />
-              </div>
-            </a>
-          </li>
-
+          <!-- render het member component -->
+          <Member {member} {currentDay} {currentMonth} />
           <!-- als er geen members zijn uit de selectedSquads deze maand, render dan 'No birthdays this month'. -->
         {:else}
           <li class="no-birthday">No birthdays this month :(</li>
@@ -151,12 +136,14 @@
     justify-content: center;
     font-size: 2.6rem;
     font-family: var(--primary-font-family);
+    color: var(--primary-text);
   }
 
   .intro-text {
     text-align: center;
     font-family: var(--secondary-font-family);
     font-weight: 100;
+    color: var(--primary-text);
     line-height: 1.3;
     font-size: 1.4rem;
     max-width: 30em;
@@ -164,10 +151,51 @@
     padding-bottom: 1em;
   }
 
+  .filters {
+    display: flex;
+    justify-content: center;
+  }
+
+  label {
+    background-color: var(--secondary-color);
+    border: var(--border);
+    padding: 1em;
+    font-family: var(--secondary-font-family);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+    color: var(--primary-text);
+    margin: 1em;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 1em;
+    height: 0.5em;
+    margin: 0em 1em 0em 0em;
+  }
+
+  input[type="checkbox"]::before {
+    content: "❌";
+    font-size: 1.2em;
+  }
+
+  input[type="checkbox"]:checked::before {
+    content: "🎁";
+  }
+
+  label:focus-within {
+    outline: var(--border);
+    outline-offset: 0.5em;
+  }
+
+  input[type="checkbox"]:focus {
+    outline: none;
+  }
+
   details {
     background-color: var(--secondary-color);
     margin: 1em;
-    border: 0.125em solid;
+    border: 0.125em solid var(--primary-color);
     overflow: hidden;
 
     &::details-content {
@@ -238,15 +266,6 @@
     margin: 1rem 0.5em;
   }
 
-  .members-birthday {
-    margin: 1em 0.5em;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .members-birthday a,
   .no-birthday {
     display: flex;
     flex-direction: row;
@@ -254,60 +273,14 @@
     border: 2px solid var(--primary-color);
     overflow: hidden;
     text-decoration: none;
-  }
-
-  .no-birthday {
     padding: 1em;
     justify-content: center;
     font-size: 1rem;
     font-family: var(--secondary-font-family);
-
-    @media (min-width: 768px) {
-      font-size: 1.4rem;
-    }
-
-    @media (min-width: 1025px) {
-      font-size: 1.6rem;
-    }
-  }
-
-  .day-number {
-    flex: 0 0 3rem;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--secondary-text);
-    background-color: var(--primary-color);
-    border-right: 2px solid var(--primary-color);
-    font-family: var(--secondary-font-family);
-
-    @media (min-width: 768px) {
-      flex: 0 0 4rem;
-      font-size: 1.4rem;
-    }
-
-    @media (min-width: 1025px) {
-      flex: 0 0 5rem;
-      font-size: 1.6rem;
-    }
-  }
-
-  .member-name {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1rem;
-    padding: 0.5rem;
     color: var(--primary-text);
-    border-right: 2px solid var(--primary-color);
-    font-family: var(--secondary-font-family);
 
     @media (min-width: 768px) {
       font-size: 1.4rem;
-      padding: 0.75rem;
     }
 
     @media (min-width: 1025px) {
@@ -315,86 +288,29 @@
     }
   }
 
-  .member-mugshot-container {
-    flex: 0 0 4rem;
-    height: 4rem;
-    display: flex;
-
-    @media (min-width: 768px) {
-      flex: 0 0 6rem;
-      height: 6rem;
-    }
-
-    @media (min-width: 1025px) {
-      flex: 0 0 7rem;
-      height: 7rem;
-    }
-  }
-
-  .member-mugshot {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .birthday-mode {
-    background: linear-gradient(
-      90deg in oklch,
-      var(--bg-color-1),
-      var(--bg-color-2),
-      var(--bg-color-3)
-    );
-    background-size: 400% 400%;
-
+  @supports (animation-timeline: --details) {
     @media (prefers-reduced-motion: no-preference) {
-      animation: gradient 3.5s ease infinite;
-    }
-
-    &:hover {
-      cursor: url("$lib/assets/party.svg"), pointer;
-    }
-
-    &::after {
-      padding-left: 0.25em;
-      content: "🥳";
+      details:not([open]) {
+        view-timeline-name: --details;
+      }
+      details:not([open]) summary {
+        animation-timeline: --details;
+        animation-name: animation-scroll-in;
+        animation-timing-function: linear;
+        animation-range: entry 0% entry 100%;
+      }
     }
   }
 
-  @keyframes gradient {
+  @keyframes animation-scroll-in {
     0% {
-      background-position: 0% 50%;
+      opacity: 0;
+      transform: translateY(100%) scale(0.5);
     }
-    50% {
-      background-position: 100% 50%;
-    }
+
     100% {
-      background-position: 0% 50%;
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
-
-@supports (animation-timeline: --details) {
-  @media (prefers-reduced-motion: no-preference) {
-    details:not([open]) {
-      view-timeline-name: --details;
-    }
-    details:not([open]) summary {
-      animation-timeline: --details;
-      animation-name: animation-scroll-in;
-      animation-timing-function: linear;
-      animation-range: entry 0% entry 100%;
-    }
-  }
-}
-
-@keyframes animation-scroll-in {
-  0% {
-    opacity: 0;
-    transform: translateY(100%) scale(0.5);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 </style>

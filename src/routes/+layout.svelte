@@ -91,9 +91,9 @@
       --primary-color: #ffffff;
       --secondary-color: #000000;
       --bg-general: #c2ecc0;
-      --bg-color-1: #dac1e4;
-      --bg-color-2: #c1d1e4;
-      --bg-color-3: #fae3b8;
+      --bg-color-1: #503c7b;
+      --bg-color-2: #512b59;
+      --bg-color-3: #3A2B59;
       --error-color: #ff7171;
       --primary-text: #ffffff;
       --secondary-text: #000000;

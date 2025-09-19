@@ -10,7 +10,7 @@
 
   <style>
     body {
-      background-color: #dac1e4;
+      background-color: var(--bg-color-1);
       margin: 1rem 2rem;
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
@@ -24,7 +24,7 @@
   <div class="img-container">
     <img
       src={member.mugshot
-        ? `https://fdnd.directus.app/assets/${member.mugshot}?width=500&height=400`
+        ? `https://fdnd.directus.app/assets/${member.mugshot}?width=500&height=400&format=webp`
         : "https://wallpapers.com/images/high/funny-profile-picture-ylwnnorvmvk2lna0.webp"}
       alt={member.name}
     />
@@ -76,6 +76,16 @@
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     text-align: center;
     margin: 1rem 0;
+    color: var(--primary-text);
+  }
+
+  a {
+    font-family: var(--secondary-font-family);
+    color: var(--primary-text);
+  }
+
+  a:visited {
+    color: var(--primary-text);
   }
 
   .profile-container {
