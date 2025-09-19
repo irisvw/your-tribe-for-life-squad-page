@@ -137,6 +137,7 @@
     font-size: 2.6rem;
     font-family: var(--primary-font-family);
     color: var(--primary-text);
+    font-weight: normal;
   }
 
   .intro-text {
