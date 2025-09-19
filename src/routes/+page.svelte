@@ -137,6 +137,7 @@
     font-size: 2.6rem;
     font-family: var(--primary-font-family);
     color: var(--primary-text);
+    font-weight: normal;
   }
 
   .intro-text {
@@ -204,6 +205,9 @@
       transition-duration: 0.5s;
       transition-behavior: allow-discrete;
       padding: 1px;
+    }
+    &[open] {
+      transform: none;
     }
 
     &[open]::details-content {
@@ -282,6 +286,32 @@
 
     @media (min-width: 1025px) {
       font-size: 1.6rem;
+    }
+  }
+
+  @supports (animation-timeline: --details) {
+    @media (prefers-reduced-motion: no-preference) {
+      details:not([open]) {
+        view-timeline-name: --details;
+      }
+      details:not([open]) summary {
+        animation-timeline: --details;
+        animation-name: animation-scroll-in;
+        animation-timing-function: linear;
+        animation-range: entry 0% entry 100%;
+      }
+    }
+  }
+
+  @keyframes animation-scroll-in {
+    0% {
+      opacity: 0;
+      transform: translateY(100%) scale(0.5);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 </style>
