@@ -8,7 +8,7 @@
 
 
 **Individuele feedback:**
- **Kim:**
+**Kim:**
 1. Goed, als ze ergens tegen aanliep vroeg ze om hulp. 
 2. Sneller op PR reageren, vooral in de avond. (Is geen avond mens dus sliep vroeg). Wat meer uitleg in de PR. 
 3. Comments plaatsen bij code en bronnen linken, soms issues te vroeg gesloten . 
