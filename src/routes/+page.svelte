@@ -26,14 +26,14 @@
   let selectedSquads = $state(["2E", "2F"]);
 
   // push een member die elke dag jarig is - als hij nog niet bestaat
-  if (!members.some((member) => member.name === "Birthday Every Day")) {
-    members.push({
-      name: "Birthday Every Day",
-      month_number: currentMonth,
-      day_number: currentDay,
-      squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
-    });
-  }
+  // if (!members.some((member) => member.name === "Birthday Every Day")) {
+  //   members.push({
+  //     name: "Birthday Every Day",
+  //     month_number: currentMonth,
+  //     day_number: currentDay,
+  //     squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
+  //   });
+  // }
 
   members.forEach((member) => {
     // converteer elk member's brithdate naar een dag en maand
@@ -136,12 +136,14 @@
     justify-content: center;
     font-size: 2.6rem;
     font-family: var(--primary-font-family);
+    color: var(--primary-text);
   }
 
   .intro-text {
     text-align: center;
     font-family: var(--secondary-font-family);
     font-weight: 100;
+    color: var(--primary-text);
     line-height: 1.3;
     font-size: 1.4rem;
     max-width: 30em;
@@ -193,7 +195,7 @@
   details {
     background-color: var(--secondary-color);
     margin: 1em;
-    border: 0.125em solid;
+    border: 0.125em solid var(--primary-color);
     overflow: hidden;
 
     &::details-content {
@@ -272,6 +274,7 @@
     justify-content: center;
     font-size: 1rem;
     font-family: var(--secondary-font-family);
+    color: var(--primary-text);
 
     @media (min-width: 768px) {
       font-size: 1.4rem;
