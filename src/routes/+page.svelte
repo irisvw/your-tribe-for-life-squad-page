@@ -26,14 +26,14 @@
   let selectedSquads = $state(["2E", "2F"]);
 
   // push een member die elke dag jarig is - als hij nog niet bestaat
-  if (!members.some((member) => member.name === "Birthday Every Day")) {
-    members.push({
-      name: "Birthday Every Day",
-      month_number: currentMonth,
-      day_number: currentDay,
-      squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
-    });
-  }
+  // if (!members.some((member) => member.name === "Birthday Every Day")) {
+  //   members.push({
+  //     name: "Birthday Every Day",
+  //     month_number: currentMonth,
+  //     day_number: currentDay,
+  //     squads: [{ squad_id: { name: "2E" } }, { squad_id: { name: "2F" } }],
+  //   });
+  // }
 
   members.forEach((member) => {
     // converteer elk member's brithdate naar een dag en maand
