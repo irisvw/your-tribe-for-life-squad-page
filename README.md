@@ -15,9 +15,15 @@
 <!-- Voeg een link toe naar Github Pages 🌐-->
 Wij hebben een squadpage ontworpen waarin iedereen in de squads 2E en 2F wordt weergegeven, gesorteerd op maand. Zo kunnen we studenten uit onze squad helpen om er snel achter te komen wie er wanneer jarig is.
 
-Live link (Netlify): https://steady-figolla-f76185.netlify.app/
-Live link (Vercel): https://your-tribe-for-life-squad-page-gamma.vercel.app/
-Design (Figma): https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-sprint-13?node-id=0-1&t=DO1S2PWpNQfFTdVs-1
+- Live link (Netlify): https://steady-figolla-f76185.netlify.app/
+- Live link (Vercel): https://your-tribe-for-life-squad-page-gamma.vercel.app/
+- Design (Figma): https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-sprint-13?node-id=0-1&t=DO1S2PWpNQfFTdVs-1
+
+  
+<img height="500" alt="image" src="https://github.com/user-attachments/assets/b7f6cd2a-5de3-4a08-bc2e-be19d4041706" />
+<img height="500" alt="image" src="https://github.com/user-attachments/assets/c774cb47-bb6e-4e6a-aed4-272758ca1d83" />
+
+
 
 ## Gebruik
 <!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
@@ -37,8 +43,8 @@ Design (Figma): https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-
 - Gefilterd op maand, daarna gesorteerd op geboortedatum
 
 ### Filters (JS)
-- bind:group
-- Squadleden per maand weergegeven, wordt gecheckt of ze in selectedSquads staan
+- We hebben bind:group gebruikt om de waardes van de filter checkboxes in het array selectedSquads op te slaan.
+- De squadleden worden per maand weergegeven, en per squadlid wordt gecheckt of ze in selectedSquads staan.
 
 
 ## Installatie
@@ -52,7 +58,8 @@ Design (Figma): https://www.figma.com/design/tJ1IaULbqkMP2b2JA5n3BG/Team-canvas-
 6. Om de app te deployen is mogelijk een [adapter](https://svelte.dev/docs/kit/adapters) nodig. 
 
 ## Bronnen
-- Pinterest board
+- Pinterest board: https://nl.pinterest.com/irisvanwilligen/squad-page/
+- Svelte group inputs: https://svelte.dev/tutorial/svelte/group-inputs
 
 
 ## Licentie
