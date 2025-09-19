@@ -195,7 +195,7 @@
   details {
     background-color: var(--secondary-color);
     margin: 1em;
-    border: 0.125em solid;
+    border: 0.125em solid var(--primary-color);
     overflow: hidden;
 
     &::details-content {
